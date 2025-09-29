@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu+ — Live Attendance Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h1>Edu+ — Live Attendance Dashboard</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Left Section: Video and Controls -->
+      <div class="left-section">
+        <!-- Video Feed -->
+        <div class="video-section">
+          <div class="video-container">
+            <video id="video" width="640" height="480" autoplay muted class="video-element"></video>
+            <canvas id="overlay" width="640" height="480" class="overlay-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls-section">
+          <button id="startBtn" class="control-btn start-btn">
+            <span class="btn-text">Start</span>
+            <div class="btn-ripple"></div>
+          </button>
+          <button id="stopBtn" class="control-btn stop-btn">
+            <span class="btn-text">Stop</span>
+            <div class="btn-ripple"></div>
+          </button>
+          <button id="reloadDataset" class="control-btn reload-btn">
+            <span class="btn-text">Reload Dataset</span>
+            <div class="btn-ripple"></div>
+          </button>
+        </div>
+
+        <!-- Download Links -->
+        <div class="download-section">
+          <a href="/attendance/json" target="_blank" class="download-link">Download JSON</a>
+          <a href="/attendance/csv" target="_blank" class="download-link">Download CSV</a>
+        </div>
+      </div>
+
+      <!-- Right Section: Students List -->
+      <div class="right-section">
+        <div class="students-panel">
+          <div class="students-header">
+            <h2>Students Detected (Live)</h2>
+          </div>
+          <div class="students-content">
+            <div class="detection-status">
+              <p>Detecting faces and marking attendance...</p>
+            </div>
+            <div class="students-list-container">
+              <ul id="present" class="students-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="/static/script.js"></script>
+  <script src="/static/animations.js"></script>
+</body>
+</html>

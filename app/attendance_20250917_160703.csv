@@ -1,0 +1,5 @@
+name,confidence,image_path,timestamp
+Priyank,52.35,/app/../faces/Priyank/20250917_115814.jpg,2025-09-17 11:58:14
+Aniket,52.43,/app/../faces/Aniket/20250917_115454.jpg,2025-09-17 11:54:54
+Aashish,54.19,/app/../faces/Aashish/20250917_115453.jpg,2025-09-17 11:54:53
+Prince,59.42,/app/../faces/Prince/20250917_115426.jpg,2025-09-17 11:54:27

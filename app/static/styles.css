@@ -1,0 +1,439 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  color: #333;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.dashboard-header {
+  background: linear-gradient(135deg, #2c5f6b 0%, #1e4147 100%);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Main Content Layout */
+.main-content {
+  flex: 1;
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Left Section */
+.left-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Video Section */
+.video-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-container {
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-element {
+  width: 640px;
+  height: 480px;
+  background-color: #000;
+  border: none;
+  display: block;
+}
+
+.overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+  pointer-events: none;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.control-btn {
+  position: relative;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.start-btn {
+  background-color: #b3d9ff;
+  color: #1e4147;
+}
+
+.start-btn:hover {
+  background-color: #99ccff;
+  transform: translateY(-1px);
+}
+
+.stop-btn {
+  background-color: #2c5f6b;
+  color: white;
+}
+
+.stop-btn:hover {
+  background-color: #1e4147;
+  transform: translateY(-1px);
+}
+
+.reload-btn {
+  background-color: #1e4147;
+  color: white;
+}
+
+.reload-btn:hover {
+  background-color: #0f2326;
+  transform: translateY(-1px);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.control-btn:active .btn-ripple {
+  width: 200px;
+  height: 200px;
+}
+
+/* Download Section */
+.download-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.download-link {
+  color: #2c5f6b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.download-link:hover {
+  color: #1e4147;
+  text-decoration: underline;
+}
+
+/* Right Section */
+.right-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.students-panel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.students-header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.students-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.students-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detection-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 4px solid #2c5f6b;
+}
+
+.detection-status p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.students-list-container {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.students-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.students-list li {
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 4px solid #2c5f6b;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.students-list li:hover {
+  background-color: #e9ecef;
+  transform: translateX(5px);
+}
+
+/* Custom Scrollbar */
+.students-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.students-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.students-list-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.students-list-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Loading State */
+.control-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+.control-btn.loading:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -8px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .left-section {
+    align-items: center;
+  }
+  
+  .controls-section {
+    justify-content: center;
+  }
+  
+  .download-section {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 15px;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.4rem;
+  }
+  
+  .dashboard-header {
+    padding: 15px 0;
+  }
+  
+  .video-element,
+  .overlay-canvas {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .control-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .download-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-content {
+    padding: 10px;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .students-header h2 {
+    font-size: 1rem;
+  }
+  
+  .video-section,
+  .students-panel {
+    padding: 15px;
+  }
+}
+
+/* Focus Management for Accessibility */
+.control-btn:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+.download-link:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-header {
+    background: #2c5f6b !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  .control-btn,
+  .download-link {
+    display: none;
+  }
+}
